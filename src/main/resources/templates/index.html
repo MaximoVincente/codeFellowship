@@ -7,11 +7,12 @@
 </head>
 <body>
 <header>
-    <h1 th:if="${username}" th:text="${'Welcome ' + username + '!'}"></h1>
+    <h1>Get Ready for Code Fellowship!</h1>
+    <h2 th:if="${username}" th:text="${'Welcome ' + username + '!'}"></h2>
 </header>
-<a th:if="${username}" href="/logout">Logout</a>
-<a th:if="!${username}" href="/login">Log In</a>
+<a class="home-logout" th:if="${username}" href="/logout">Logout</a>
+<a class="home-login" th:if="!${username}" href="/login">Log In</a>
 <br>
-<a th:if="!${username}" href="/signup">Sign Up</a>
+<a class="home-signup" th:if="!${username}" href="/signup">Sign Up</a>
 </body>
 </html>
