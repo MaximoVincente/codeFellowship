@@ -42,8 +42,12 @@ body {
   background-blend-mode: screen;
 }
 
+.home-login{
+
+}
+
 .signup {
-  display: flex;
+  display: block;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -72,7 +76,7 @@ body {
   border-radius: 5px;
 }
 
-a{
+.login-signup-button{
   margin-top: 11px;
   text-decoration: none;
   border: thin solid black;
@@ -83,6 +87,22 @@ a{
   font-weight: 200;
   font-family: 'Roboto Mono', monospace;
   font-size: 18px;
+  transition: 300ms;
+  float: left;
+}
+
+.home-page{
+  margin-top: 25px;
+  margin-left: 11px;
+  text-decoration: none;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(156, 218, 240);
+  color: white;
+  font-weight: 200;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 29px;
   transition: 300ms;
   float: left;
 }
