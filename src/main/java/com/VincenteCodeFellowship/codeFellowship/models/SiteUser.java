@@ -10,7 +10,6 @@ import javax.persistence.Id;
 import java.util.Collection;
 import java.util.Date;
 
-
 @Entity
 public class SiteUser implements UserDetails {
 
