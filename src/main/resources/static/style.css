@@ -33,6 +33,7 @@ p {
 
 body {
   width: 100%;
+    font-family: 'Roboto Mono', monospace;
   margin: 0 auto;
   background:
     linear-gradient(
@@ -42,6 +43,27 @@ body {
   background-blend-mode: screen;
 }
 
+.user-message{
+  font-family: 'Roboto Mono', monospace;
+  display:inline-flex;
+  margin-left: 47px;
+    font-size: 29px;
+      border: thin solid black;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: rgb(156, 218, 240);
+      color: black;
+      transition: 300ms;
+      margin-right: 15px;
+}
+
+.home-links{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: left;
+  margin-left: 29px;
+}
 
 .home-login {
   text-decoration: none;
@@ -71,16 +93,28 @@ body {
   font-weight: 200;
   font-size: 18px;
   transition: 300ms;
-  margin-right: 15px;
 }
 
 .home-signup:hover {
   background-color: rgb(186, 229, 245);
   color: black;
+}
 
-.home-login{
+.home-logout{
+  text-decoration: none;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(156, 218, 240);
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  transition: 300ms;
+}
 
-
+.home-logout:hover {
+  background-color: rgb(186, 229, 245);
+  color: black;
 }
 
 .signup {
@@ -97,6 +131,23 @@ body {
   background-color: rgb(241, 247, 248);
   border-radius: 5px;
 }
+
+.signup-button{
+  text-decoration: none;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(156, 218, 240);
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  transition: 300ms;
+}
+
+.signup-button: hover {
+   background-color: rgb(186, 229, 245);
+   color: black;
+   }
 
 .login {
   display: flex;
@@ -182,4 +233,18 @@ input:hover {
   background-color: rgb(156, 218, 240);
   color: white;
   cursor: pointer;
+}
+
+.page-info {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 80%;
+  padding: 11px;
+  background-color: rgb(241, 247, 248);
+  box-shadow: inset 1px 1px 20px rgb(112, 163, 182);
+  margin-top: 15px;
+  margin-bottom: 20px;
+  line-height: 38px;
 }

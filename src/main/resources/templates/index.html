@@ -8,11 +8,25 @@
 <body>
 <header>
     <h1>Get Ready for Code Fellowship!</h1>
-    <h2 th:if="${username}" th:text="${'Welcome ' + username + '!'}"></h2>
+    <h2 class="user-message" th:if="${username}" th:text="${'Welcome ' + username + '!'}"></h2>
 </header>
+<div class="home-links">
 <a class="home-logout" th:if="${username}" href="/logout">Logout</a>
 <a class="home-login" th:if="!${username}" href="/login">Log In</a>
 <br>
 <a class="home-signup" th:if="!${username}" href="/signup">Sign Up</a>
+</div>
+
+<div class="page-info">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Cursus eget nunc scelerisque viverra mauris in aliquam sem fringilla. Ornare aenean euismod elementum nisi. Odio facilisis mauris sit amet massa vitae tortor condimentum. Sodales ut etiam sit amet nisl. Mattis ullamcorper velit sed ullamcorper. Fringilla urna porttitor rhoncus dolor. Rhoncus aenean vel elit scelerisque mauris pellentesque pulvinar. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo. Pretium aenean pharetra magna ac placerat. Eu nisl nunc mi ipsum faucibus vitae. Erat nam at lectus urna duis convallis. Orci porta non pulvinar neque laoreet suspendisse interdum. Enim nulla aliquet porttitor lacus. Nec ullamcorper sit amet risus nullam eget felis. Egestas quis ipsum suspendisse ultrices gravida dictum fusce ut placerat. Sed ullamcorper morbi tincidunt ornare. Dolor sit amet consectetur adipiscing elit. Purus viverra accumsan in nisl nisi scelerisque.
+<br>
+    Donec enim diam vulputate ut pharetra sit amet aliquam. Lectus quam id leo in vitae turpis. Semper auctor neque vitae tempus quam pellentesque nec nam aliquam. Donec ultrices tincidunt arcu non sodales neque. Elementum integer enim neque volutpat ac tincidunt vitae semper. Eu nisl nunc mi ipsum faucibus vitae. Nibh tellus molestie nunc non. Eu turpis egestas pretium aenean pharetra magna ac placerat. Augue lacus viverra vitae congue eu consequat ac. Placerat orci nulla pellentesque dignissim enim sit amet venenatis. Sed egestas egestas fringilla phasellus faucibus scelerisque eleifend donec.
+    <br>
+    Sit amet facilisis magna etiam tempor. Pulvinar etiam non quam lacus suspendisse faucibus. Vitae tortor condimentum lacinia quis vel eros donec ac odio. Faucibus turpis in eu mi bibendum neque. Varius quam quisque id diam vel. Rutrum tellus pellentesque eu tincidunt tortor aliquam nulla. Tempus egestas sed sed risus pretium quam vulputate dignissim. Luctus venenatis lectus magna fringilla urna porttitor rhoncus. Morbi blandit cursus risus at ultrices mi tempus imperdiet nulla. Faucibus in ornare quam viverra orci sagittis eu. Sed viverra ipsum nunc aliquet bibendum enim facilisis. Ornare arcu odio ut sem nulla pharetra. Interdum posuere lorem ipsum dolor sit amet.
+    <br>
+    Pretium viverra suspendisse potenti nullam ac tortor vitae. Facilisis volutpat est velit egestas dui id ornare arcu. Ac felis donec et odio pellentesque diam volutpat. Pulvinar etiam non quam lacus suspendisse faucibus interdum posuere. Massa vitae tortor condimentum lacinia quis vel. Leo vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Euismod elementum nisi quis eleifend quam adipiscing. Nascetur ridiculus mus mauris vitae ultricies leo integer. Volutpat lacus laoreet non curabitur gravida arcu ac tortor. Facilisi cras fermentum odio eu feugiat pretium nibh ipsum consequat. Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat. Mauris sit amet massa vitae tortor condimentum lacinia quis. Sit amet purus gravida quis. Fusce ut placerat orci nulla pellentesque dignissim enim sit.
+    <br>
+    Sit amet mauris commodo quis imperdiet massa. Suspendisse ultrices gravida dictum fusce ut placerat orci. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Risus feugiat in ante metus dictum. Velit egestas dui id ornare arcu odio. Diam donec adipiscing tristique risus nec feugiat in fermentum. Sed faucibus turpis in eu mi. In metus vulputate eu scelerisque felis imperdiet proin fermentum. Augue eget arcu dictum varius. Iaculis nunc sed augue lacus. Consequat interdum varius sit amet mattis vulputate. Dictum fusce ut placerat orci nulla. Condimentum id venenatis a condimentum vitae sapien pellentesque habitant. Commodo sed egestas egestas fringilla. Ultrices sagittis orci a scelerisque purus semper eget. Tortor pretium viverra suspendisse potenti nullam ac. Vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt.
+</div>
 </body>
 </html>
