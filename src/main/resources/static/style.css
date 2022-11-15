@@ -42,6 +42,42 @@ body {
   background-blend-mode: screen;
 }
 
+.home-login {
+  text-decoration: none;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(156, 218, 240);
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  transition: 300ms;
+  margin-right: 15px;
+}
+
+.home-login:hover {
+  background-color: rgb(186, 229, 245);
+  color: black;
+}
+
+.home-signup {
+  text-decoration: none;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(156, 218, 240);
+  color: white;
+  font-weight: 200;
+  font-size: 18px;
+  transition: 300ms;
+  margin-right: 15px;
+}
+
+.home-signup:hover {
+  background-color: rgb(186, 229, 245);
+  color: black;
+}
+
 .signup {
   display: flex;
   flex-direction: column;
