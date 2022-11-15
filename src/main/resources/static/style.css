@@ -1,0 +1,128 @@
+html {
+  margin: 0;
+  min-height: 100%;
+}
+
+header {
+  margin-top: 30px;
+  border: 1px solid black;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 56px;
+  box-shadow: 1px 1px 8px #b4b4b4;
+  background-color: rgb(241, 247, 248);
+  border-radius: 2px;
+}
+
+h1 {
+  font-size: 45px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: 100;
+}
+
+p {
+  font-size: 45px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-weight: 100;
+}
+
+
+body {
+  width: 100%;
+  margin: 0 auto;
+  background:
+    linear-gradient(
+      -45deg,
+      rgb(104, 200, 255),
+      transparent);
+  background-blend-mode: screen;
+}
+
+.signup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 900px;
+  margin-bottom: 15px;
+  border: thin solid black;
+  box-shadow: 1px 1px 8px #b4b4b4;
+  background-color: rgb(241, 247, 248);
+  border-radius: 5px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 900px;
+  margin-bottom: 15px;
+  border: thin solid black;
+  box-shadow: 1px 1px 8px #b4b4b4;
+  background-color: rgb(241, 247, 248);
+  border-radius: 5px;
+}
+
+a{
+  margin-top: 11px;
+  text-decoration: none;
+  border: thin solid black;
+  border-radius: 5px;
+  padding: 10px;
+  background-color: rgb(156, 218, 240);
+  color: white;
+  font-weight: 200;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 18px;
+  transition: 300ms;
+  float: left;
+}
+
+.login-input{
+float: right;
+}
+
+a:hover {
+  background-color: rgb(186, 229, 245);
+  color: black;
+}
+
+label {
+       text-align: center;
+       max-width: 600px;
+       font-family: 'Roboto Mono', monospace;
+       line-height: 25px;
+       font-weight: 300;
+       font-size: 29px;
+     }
+
+input{
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 11px;
+  padding: 11px;
+  border-radius: 5px;
+  border: 1px solid rgb(118, 205, 236);
+  color: black;
+  background-color: rgb(251, 254, 255);
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 300;
+  font-size: 18px;
+  transition: 300ms;
+}
+
+input:hover {
+  background-color: rgb(156, 218, 240);
+  color: white;
+  cursor: pointer;
+}
