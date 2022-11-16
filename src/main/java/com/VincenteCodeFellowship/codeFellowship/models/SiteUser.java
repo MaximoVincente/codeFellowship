@@ -24,6 +24,7 @@ public class SiteUser implements UserDetails {
     private Date dateOfBirth;
     private String bio;
 
+
     protected SiteUser() {
     }
 
@@ -36,9 +37,12 @@ public class SiteUser implements UserDetails {
         this.bio = bio;
     }
 
+
     public Long getId() {
         return id;
     }
+
+
 
     public void setUsername(String username) {
         this.username = username;

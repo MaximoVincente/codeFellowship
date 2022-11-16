@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <div th:replace="/fragments/header :: h1"></div>
+    <h2 class="user-message" th:if="${siteUser}" th:text="${'Welcome ' + siteUser.username + '!'}"></h2>
+</header>
+<a class="home-logout" th:if="${siteUser}" href="/logout">Logout</a>
+<div class="user-details-container">
+    <img src="https://i.pravatar.cc/300"/>
+    <ul>
+        <div class="user-detail-duos">
+            <li class="user-detail-label">First Name</li>
+            <li th:text="${siteUser.firstName}"></li>
+        </div>
+        <div class="user-detail-duos">
+            <li class="user-detail-label">Last Name</li>
+            <li th:text="${siteUser.lastName}"></li>
+        </div>
+        <div class="user-detail-duos">
+            <li class="user-detail-label">Username</li>
+            <li th:text="${siteUser.username}"></li>
+        </div>
+        <div class="user-detail-duos">
+            <li class="user-detail-label">Date of Birth</li>
+            <li th:text="${siteUser.dateOfBirth}"></li>
+        </div>
+        <div class="user-detail-duos">
+            <li class="user-detail-label">Bio</li>
+            <li th:text="${siteUser.bio}"></li>
+        </div>
+    </ul>
+</div>
+
+
+<form  action="/create-post" method="post">
+    <fieldset>
+        <legend>New Post</legend>
+        <label>Title</label>
+        <input  type="text" required>
+        <br>
+        <label>Body</label>
+        <textarea  type="text" name="body" required></textarea>
+        <input class="button" type="submit" value="Submit Post">
+    </fieldset>
+</form>
+
+<!--<p th:text="${post.createdAt}"></p>-->
+<!--    <p th:text="${post.body}"></p>-->
+
+</body>
+</html>

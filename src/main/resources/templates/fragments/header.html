@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <h1>Get Ready for Code Fellowship!</h1>
+    <h2 class="user-message" th:if="${username}" th:text="${'Welcome ' + username + '!'}"></h2>
+</header>
+<div class="home-links">
+    <a class="home-logout" th:if="${username}" href="/logout">Logout</a>
+    <a class="home-login" th:if="!${username}" href="/login">Log In</a>
+    <br>
+    <a class="home-signup" th:if="!${username}" href="/signup">Sign Up</a>
+</div>
+</body>
+</html>

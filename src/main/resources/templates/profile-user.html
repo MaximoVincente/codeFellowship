@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <div th:replace="/fragments/header :: h1"></div>
+    <h2 class="user-message" th:if="${currentUser}" th:text="${'Welcome ' + currentUser.username + '!'}"></h2>
+</header>
+<div>
+    <img src="https://i.pravatar.cc/300"/>
+    <ul th:if="${userToLookAt != null}">
+        <li>User Name</li>
+        <li th:text="${userToLookAt.username}"></li>
+        <li>First Name</li>
+        <li th:text="${userToLookAt.firstName}"></li>
+        <li>Last Name</li>
+        <li th:text="${userToLookAt.lastName}"></li>
+        <li>Bio</li>
+        <li th:text="${userToLookAt.bio}"></li>
+    </ul>
+</div>
+</body>
+</html>

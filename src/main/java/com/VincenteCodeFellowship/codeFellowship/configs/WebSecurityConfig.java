@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
 
                 .authorizeRequests()
-                .antMatchers("/", "/signup", "/login", "/*.css").permitAll()
+                .antMatchers("/", "/signup", "/login", "/*.css","/profile-user","/header.html", "users").permitAll()
                 .anyRequest().authenticated()
                 .and()
 
@@ -45,6 +45,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .logout()
-                .logoutSuccessUrl("/login");
+                .logoutSuccessUrl("/my-profile");
     }
 }
