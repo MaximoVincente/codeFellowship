@@ -100,11 +100,7 @@ public class SiteUserController {
                 m.addAttribute("firstName", userToLookAt.getLastName());
                 m.addAttribute("bio", userToLookAt.getBio());
                 m.addAttribute("id", userToLookAt.getId());
-            List<Post> posts = new ArrayList<>();
-        for (SiteUser user : siteUser.getUsersWhoFollowMe()) {
-            posts.addAll(user.getPostMsg());
-            m.addAttribute("posts", posts);
-        }
+                m.addAttribute("usersPosts", siteUser.getPostMsg());
 
         return "profile-user";
     }
@@ -152,11 +148,7 @@ public class SiteUserController {
         if (p != null) {
             SiteUser siteUser = siteUserRepo.findByUsername(p.getName());
             m.addAttribute("siteUser", siteUser);
-            List<Post> usersPosts = new ArrayList<>();
-            for (SiteUser user : siteUser.getUsersWhoFollowMe()) {
-                usersPosts.addAll(user.getPostMsg());
-            }
-            m.addAttribute("usersPosts", usersPosts);
+            m.addAttribute("usersPosts", siteUser.getPostMsg());
         }
         return "feed.html";
     }

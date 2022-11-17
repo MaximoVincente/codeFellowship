@@ -11,6 +11,7 @@
     <h2 class="user-message" th:if="${siteUser}" th:text="${'Welcome ' + siteUser.getUsername() + '!'}"></h2>
     <a class="home-logout" th:if="${username}" href="/users">Users</a>
     <a class="home-logout" th:if="${username}" href="/feed">Feed</a>
+    <a class="home-logout"  href="/">Home</a>
 </header>
 <a class="home-logout" th:if="${username}" href="/logout">Logout</a>
 <div>
@@ -37,11 +38,20 @@
     <fieldset>
         <legend>New Post</legend>
         <textarea  type="text" name="body" required></textarea>
-        <input type="submit" value="Submit Post">
+        <input type="submit" value="Submit Post"  th:disabled="${!siteUser.getUsername().equals(username)}">
     </fieldset>
 </form>
 
-<article th:each="post : ${posts}">
+<h2>Following</h2>
+<ul th:each="followedUser : ${usersIFollow}">
+    <li th:text="${followedUser.username}"></li>
+</ul>
+<h2>Followers</h2>
+<ul th:each="userThatFollows : ${usersWhoFollowMe}">
+    <li th:text="${userThatFollows.username}"></li>
+</ul>
+
+<article th:each="post : ${usersPosts}">
     <div>
         <div>
             <p class="date" th:text="${post.createdAt}"></p>
@@ -54,11 +64,11 @@
 
 
 
-<h2>Users followed</h2>
+<h2>Following</h2>
 <ul th:each="followedUser : ${usersIFollow}">
     <li th:text="${followedUser.username}"></li>
 </ul>
-<h2>Users that follow this user</h2>
+<h2>Followers</h2>
 <ul th:each="userThatFollows : ${usersWhoFollowMe}">
     <li th:text="${userThatFollows.username}"></li>
 </ul>

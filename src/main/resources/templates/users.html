@@ -11,6 +11,8 @@
     <h2 class="user-message" th:if="${username}" th:text="${'Welcome ' + siteUser.getUsername() + '!'}"></h2>
     <a class="home-logout"  href="/users">Users</a>
     <a class="home-logout"  href="/feed">Feed</a>
+    <a class="home-logout"  href="/">Home</a>
+
 </header>
 
 <ul th:if="${users != null}">
