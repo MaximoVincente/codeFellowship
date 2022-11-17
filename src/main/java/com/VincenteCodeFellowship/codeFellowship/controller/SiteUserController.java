@@ -1,5 +1,6 @@
 package com.VincenteCodeFellowship.codeFellowship.controller;
 
+import com.VincenteCodeFellowship.codeFellowship.models.Post;
 import com.VincenteCodeFellowship.codeFellowship.models.SiteUser;
 import com.VincenteCodeFellowship.codeFellowship.repositories.SiteUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class SiteUserController {
@@ -61,12 +64,12 @@ public class SiteUserController {
     @PostMapping("/signup")
     public RedirectView createUser(String username, String password, String firstName, String lastName, Date dateOfBirth, String bio){
         if(siteUserRepo.findByUsername(username) != null)
-        return new RedirectView("profile-user");
+        return new RedirectView("/");
         String hashedPW = passwordEncoder.encode(password);
         SiteUser newUser = new SiteUser(username, hashedPW, firstName, lastName, dateOfBirth, bio);
         siteUserRepo.save(newUser);
         authWithHttpServletRequest(username, password);
-        return new RedirectView("profile-user");
+        return new RedirectView("/");
     }
 
     public void authWithHttpServletRequest(String username, String password){
@@ -87,35 +90,76 @@ public class SiteUserController {
     }
 
     @GetMapping("/users/{id}")
-    public String getUserInfo(Model m, Principal p, @PathVariable Long id){
-        SiteUser userToLookAt = siteUserRepo.getReferenceById(id);
-        if (p != null) {
-            SiteUser currentUser = siteUserRepo.findByUsername(p.getName());
-            if (currentUser.getId() != userToLookAt.getId()){
+    public String getUserInfo(Model m, Principal p, @PathVariable Long id) {
+            SiteUser siteUser = (SiteUser) siteUserRepo.findByUsername(p.getName());
+            m.addAttribute("siteUser", siteUser);
+            SiteUser userToLookAt = siteUserRepo.findById(id).orElseThrow();
+                m.addAttribute("usersIFollow", userToLookAt.getUsersIFollow());
+                m.addAttribute("usersWhoFollowMe", userToLookAt.getUsersWhoFollowMe());
                 m.addAttribute("username", userToLookAt.getUsername());
-                m.addAttribute("firstName", userToLookAt.getFirstName());
-                m.addAttribute("lastName", userToLookAt.getLastName());
+                m.addAttribute("firstName", userToLookAt.getLastName());
                 m.addAttribute("bio", userToLookAt.getBio());
-            }
-        else {
-                m.addAttribute("username", currentUser.getUsername());
-                m.addAttribute("firstName", currentUser.getFirstName());
-                m.addAttribute("lastName", currentUser.getLastName());
-                m.addAttribute("bio", currentUser.getBio());
-                m.addAttribute("dateOfBirth", currentUser.getDateOfBirth());
-        }
+                m.addAttribute("id", userToLookAt.getId());
+            List<Post> posts = new ArrayList<>();
+        for (SiteUser user : siteUser.getUsersWhoFollowMe()) {
+            posts.addAll(user.getPostMsg());
+            m.addAttribute("posts", posts);
         }
 
         return "profile-user";
     }
 
-//    @PutMapping("/users/{id}")
-//    public RedirectView editUserInfo(String post, Long userId) throws ServletException {
-//        SiteUser user = siteUserRepo.findById(userId).orElseThrow();
-//            user.setPost(post);
-//            siteUserRepo.save(user);
-//        return new RedirectView("/users/" + userId);
-//    }
+    @PutMapping("/users/{id}")
+    public RedirectView editUserInfo(@PathVariable Long id, Principal p, Model m) {
+        if (p != null) {
+            SiteUser siteUser = siteUserRepo.findByUsername(p.getName());
+            SiteUser userToLookAt = siteUserRepo.findById(id).orElseThrow();
+            if (siteUser != null && userToLookAt != null) {
+                m.addAttribute("siteUser", siteUser);
+                siteUserRepo.save(siteUser);
+            }
+        }
+        return new RedirectView("/users/" + id);
+    }
+
+    @PutMapping("/follow-user/{id}")
+    public RedirectView followUser(Principal p, @PathVariable Long id){
+        SiteUser userToFollow = siteUserRepo.findById(id).orElseThrow(() -> new RuntimeException("Error getting data for Id: " + id));
+        SiteUser browsingUser = siteUserRepo.findByUsername(p.getName());
+
+        if(browsingUser.getUsername().equals(userToFollow.getUsername())){
+            throw new IllegalArgumentException("Following yourself is a bad idea!");
+        }
+        browsingUser.getUsersIFollow().add(userToFollow);
+        siteUserRepo.save(browsingUser);
+        // save to db
+        return new RedirectView("/users/" + id);
+    }
+
+    @GetMapping("/users")
+    public String getAllUsersPage(Principal p, Model m) {
+        if (p != null) {
+            SiteUser siteUser = siteUserRepo.findByUsername(p.getName());
+            m.addAttribute("applicationUser", siteUser);
+        }
+        List<SiteUser> users = siteUserRepo.findAll();
+        m.addAttribute("users", users);
+        return "users.html";
+    }
+
+    @GetMapping("/feed")
+    public String getMyFeed(Principal p, Model m) {
+        if (p != null) {
+            SiteUser siteUser = siteUserRepo.findByUsername(p.getName());
+            m.addAttribute("siteUser", siteUser);
+            List<Post> usersPosts = new ArrayList<>();
+            for (SiteUser user : siteUser.getUsersWhoFollowMe()) {
+                usersPosts.addAll(user.getPostMsg());
+            }
+            m.addAttribute("usersPosts", usersPosts);
+        }
+        return "feed.html";
+    }
 
 }
 

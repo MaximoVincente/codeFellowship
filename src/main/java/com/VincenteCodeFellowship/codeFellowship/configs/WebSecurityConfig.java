@@ -1,6 +1,7 @@
 package com.VincenteCodeFellowship.codeFellowship.configs;
 
 
+import com.VincenteCodeFellowship.codeFellowship.models.SiteUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import static org.hibernate.criterion.Restrictions.and;
 
 @Configuration
 @EnableWebSecurity
@@ -36,15 +39,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
 
                 .authorizeRequests()
-                .antMatchers("/", "/signup", "/login", "/*.css","/profile-user","/header.html", "users").permitAll()
+                .antMatchers("/", "/signup", "/login", "/*.css","/profile-user","/header", "/users", "/feed").permitAll()
                 .anyRequest().authenticated()
                 .and()
+
 
                 .formLogin()
                 .loginPage("/login")
 
                 .and()
                 .logout()
-                .logoutSuccessUrl("/my-profile");
+                .logoutSuccessUrl("/");
+
     }
 }

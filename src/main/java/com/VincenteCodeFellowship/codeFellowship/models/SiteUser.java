@@ -3,12 +3,8 @@ package com.VincenteCodeFellowship.codeFellowship.models;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Collection;
-import java.util.Date;
+import javax.persistence.*;
+import java.util.*;
 
 @Entity
 public class SiteUser implements UserDetails {
@@ -24,6 +20,38 @@ public class SiteUser implements UserDetails {
     private Date dateOfBirth;
     private String bio;
 
+    @OneToMany(mappedBy = "siteUser", cascade = CascadeType.ALL)
+    List<Post> postMsg;
+
+    @Column
+            (columnDefinition = "text")
+
+    @ManyToMany
+    @JoinTable(
+            name = "followers_to_followees",
+            joinColumns = {@JoinColumn(name = "userWhoIsFollowing")},
+            inverseJoinColumns = {@JoinColumn(name = "FollowedUser")}
+    )
+    Set<SiteUser> usersIFollow = new HashSet<>();
+
+    @ManyToMany(mappedBy = "usersIFollow")
+    Set <SiteUser> usersWhoFollowMe = new HashSet<>();
+
+    public void setUsersIFollow(Set<SiteUser> usersIFollow) {
+        this.usersIFollow = usersIFollow;
+    }
+
+    public void setUsersWhoFollowMe(Set<SiteUser> usersWhoFollowMe) {
+        this.usersWhoFollowMe = usersWhoFollowMe;
+    }
+
+    public Set<SiteUser> getUsersIFollow() {
+        return usersIFollow;
+    }
+
+    public Set<SiteUser> getUsersWhoFollowMe() {
+        return usersWhoFollowMe;
+    }
 
     protected SiteUser() {
     }
@@ -42,7 +70,9 @@ public class SiteUser implements UserDetails {
         return id;
     }
 
-
+    public List<Post> getPostMsg() {
+        return postMsg;
+    }
 
     public void setUsername(String username) {
         this.username = username;

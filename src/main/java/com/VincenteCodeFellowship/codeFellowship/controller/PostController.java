@@ -32,7 +32,8 @@ public class PostController {
             post.setCreatedAt(new Date());
             post.setSiteUser(siteUser);
             postRepository.save(post);
+            return new RedirectView("/users/" + siteUser.getId());
         }
-        return new RedirectView("my-profile");
+        return new RedirectView("/");
     }
 }

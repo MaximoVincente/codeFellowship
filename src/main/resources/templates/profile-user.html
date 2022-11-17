@@ -8,20 +8,59 @@
 <body>
 <header>
     <div th:replace="/fragments/header :: h1"></div>
-    <h2 class="user-message" th:if="${currentUser}" th:text="${'Welcome ' + currentUser.username + '!'}"></h2>
+    <h2 class="user-message" th:if="${siteUser}" th:text="${'Welcome ' + siteUser.getUsername() + '!'}"></h2>
+    <a class="home-logout" th:if="${username}" href="/users">Users</a>
+    <a class="home-logout" th:if="${username}" href="/feed">Feed</a>
 </header>
+<a class="home-logout" th:if="${username}" href="/logout">Logout</a>
 <div>
     <img src="https://i.pravatar.cc/300"/>
-    <ul th:if="${userToLookAt != null}">
+    <ul>
         <li>User Name</li>
-        <li th:text="${userToLookAt.username}"></li>
+        <li th:text="${username}"></li>
         <li>First Name</li>
-        <li th:text="${userToLookAt.firstName}"></li>
+        <li th:text="${firstName}"></li>
         <li>Last Name</li>
-        <li th:text="${userToLookAt.lastName}"></li>
+        <li th:text="${lastName}"></li>
         <li>Bio</li>
-        <li th:text="${userToLookAt.bio}"></li>
+        <li th:text="${bio}"></li>
     </ul>
 </div>
+
+<form th:action="${'/follow-user/' + id}" th:method="PUT">
+    <input type="hidden" th:value="${id}">
+    <input type="submit" value="Follow User" th:disabled="${siteUser.getUsername().equals(username)}">
+    <!--  submit input that is disabled if you try to follow yourself-->
+</form>
+
+<form action="/create-post" method="post">
+    <fieldset>
+        <legend>New Post</legend>
+        <textarea  type="text" name="body" required></textarea>
+        <input type="submit" value="Submit Post">
+    </fieldset>
+</form>
+
+<article th:each="post : ${posts}">
+    <div>
+        <div>
+            <p class="date" th:text="${post.createdAt}"></p>
+        </div>
+    </div>
+    <div>
+        <p th:text="${post.body}"></p>
+    </div>
+</article>
+
+
+
+<h2>Users followed</h2>
+<ul th:each="followedUser : ${usersIFollow}">
+    <li th:text="${followedUser.username}"></li>
+</ul>
+<h2>Users that follow this user</h2>
+<ul th:each="userThatFollows : ${usersWhoFollowMe}">
+    <li th:text="${userThatFollows.username}"></li>
+</ul>
 </body>
 </html>

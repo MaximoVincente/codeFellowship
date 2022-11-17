@@ -9,8 +9,11 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+    @Column
+            (columnDefinition = "text")
     String body;
     Date createdAt;
+
 
     @ManyToOne
     SiteUser siteUser;
@@ -25,6 +28,7 @@ public class Post {
     }
 
     public Post(String body) {
+        this.body = body;
     }
 
     public long getId() {

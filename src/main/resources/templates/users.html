@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header>
+    <div th:replace="/fragments/header :: h1"></div>
+    <h2 class="user-message" th:if="${username}" th:text="${'Welcome ' + siteUser.getUsername() + '!'}"></h2>
+    <a class="home-logout"  href="/users">Users</a>
+    <a class="home-logout"  href="/feed">Feed</a>
+</header>
+
+<ul th:if="${users != null}">
+    <div th:each="user : ${users}">
+        <img src="https://i.pravatar.cc/300"/>
+        <a th:href="${'/users/' + user.id}">
+            <li class="all-user-row">
+                <p th:text="${user.firstName}"></p>
+                <p th:text="${user.lastName}"></p>
+                <p th:text="${user.username}"></p>
+            </li>
+        </a>
+    </div>
+</ul>
+</body>
+</html>

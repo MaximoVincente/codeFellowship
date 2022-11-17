@@ -9,6 +9,8 @@
 <header>
     <h1>Get Ready for Code Fellowship!</h1>
     <h2 class="user-message" th:if="${username}" th:text="${'Welcome ' + username + '!'}"></h2>
+    <a class="home-logout" th:if="${username}" href="/users">Users</a>
+    <a class="home-logout" th:if="${username}" href="/feed">Feed</a>
 </header>
 <div class="home-links">
 <a class="home-logout" th:if="${username}" href="/logout">Logout</a>
