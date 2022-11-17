@@ -21,3 +21,15 @@
 -  `/profile-user/{id} ` This is how to look for a user
 -  `/my-profile` : The user is redirected to its profile after login
 - `/error` : Custom error page  
+
+## Code Fellowship application 3.0
+
+- Has a News Feed page
+- Has a Users page, where a user can view every profile in a page
+- A user can follow another user
+- A profile will view the followers and following
+
+##  New Routes
+
+- `/users` View all users
+- `feed` View all posts
