@@ -38,7 +38,7 @@
     <fieldset>
         <legend>New Post</legend>
         <textarea  type="text" name="body" required></textarea>
-        <input type="submit" value="Submit Post">
+        <input type="submit" value="Submit Post"  th:disabled="${!siteUser.getUsername().equals(username)}">
     </fieldset>
 </form>
 
