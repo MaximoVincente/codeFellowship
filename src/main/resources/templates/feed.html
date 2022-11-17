@@ -11,14 +11,17 @@
     <h2 class="user-message" th:if="${siteUser}" th:text="${'Welcome ' + siteUser.getUsername() + '!'}"></h2>
     <a class="home-logout"  href="/users">Users</a>
     <a class="home-logout"  href="/feed">Feed</a>
+    <a class="home-logout"  href="/">Home</a>
+
 </header>
 <article th:each="post : ${usersPosts}">
     <div>
+        <img src="https://i.pravatar.cc/300"/>
         <div>
             <p class= th:text="${post.createdAt}"></p>
         </div>
         <div>
-            <a th:href="${'/profile-user/' + post.siteUser.id}"
+            <a th:href="${'/users/' + post.siteUser.id}"
                th:text="${post.siteUser.firstName + ' ' + post.siteUser.lastName}"></a>
         </div>
 
